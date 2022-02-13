@@ -639,7 +639,6 @@ define Package/xtables-mods-default
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables +xtables-mod-standard +xtables-mod-tcp +xtables-mod-udp +xtables-mod-comment +xtables-mod-set +xtables-mod-limit +xtables-mod-mac +xtables-mod-multiport +xtables-mod-tcpmss +xtables-mod-time +xtables-mod-mark +xtables-mod-conntrack +xtables-mod-masquerade +xtables-mod-redirect +iptables-mod-nflog)
   TITLE:=Default xtables modules
   VARIANT:=nftables
-  HIDDEN:=1
 endef
 
 define Package/xtables-mods-default/description
@@ -759,6 +758,7 @@ define Package/libxtables-nft
  TITLE:=IPv4/IPv6 firewall - shared xtables nft library
  ABI_VERSION:=12
  DEPENDS:=+libxtables
+ VARIANT:=nftables
 endef
 
 TARGET_CPPFLAGS := \
