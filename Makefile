@@ -36,7 +36,6 @@ define Package/iptables/Default
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Firewall
-  VARIANT:=legacy
   URL:=https://netfilter.org/
 endef
 
@@ -54,7 +53,6 @@ $(call Package/iptables/Default)
     200:/usr/sbin/iptables:/usr/sbin/xtables-legacy-multi \
     200:/usr/sbin/iptables-restore:/usr/sbin/xtables-legacy-multi \
     200:/usr/sbin/iptables-save:/usr/sbin/xtables-legacy-multi
-  PROVIDES:=iptables
 endef
 
 define Package/iptables/config
@@ -119,8 +117,6 @@ $(call Package/iptables/Default)
     300:/usr/sbin/iptables:/usr/sbin/xtables-nft-multi \
     300:/usr/sbin/iptables-restore:/usr/sbin/xtables-nft-multi \
     300:/usr/sbin/iptables-save:/usr/sbin/xtables-nft-multi
-  VARIANT:=nftables
-  PROVIDES:=iptables
 endef
 
 define Package/iptables-nft/description
@@ -459,7 +455,6 @@ endef
 define Package/xtables-mod-standard
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=Standard xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-standard/description
@@ -472,7 +467,6 @@ endef
 define Package/xtables-mod-tcp
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=TCP xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-tcp/description
@@ -484,7 +478,6 @@ endef
 define Package/xtables-mod-udp
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=UDP xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-udp/description
@@ -496,7 +489,6 @@ endef
 define Package/xtables-mod-comment
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=Comment xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-comment/description
@@ -508,7 +500,6 @@ endef
 define Package/xtables-mod-set
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=SET xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-set/description
@@ -523,7 +514,6 @@ endef
 define Package/xtables-mod-limit
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=limit xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-limit/description
@@ -535,7 +525,6 @@ endef
 define Package/xtables-mod-mac
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=mac xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-mac/description
@@ -547,7 +536,6 @@ endef
 define Package/xtables-mod-multiport
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=multiport xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-multiport/description
@@ -559,7 +547,6 @@ endef
 define Package/xtables-mod-tcpmss
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=TCPMSS xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-tcpmss/description
@@ -571,7 +558,6 @@ endef
 define Package/xtables-mod-time
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=time xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-time/description
@@ -583,7 +569,6 @@ endef
 define Package/xtables-mod-mark
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=mark xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-mark/description
@@ -598,7 +583,6 @@ endef
 define Package/xtables-mod-conntrack
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables +kmod-ipt-conntrack)
   TITLE:=conntrack xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-conntrack/description
@@ -614,7 +598,6 @@ endef
 define Package/xtables-mod-masquerade
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=MASQUERADE xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-masquerade/description
@@ -626,7 +609,6 @@ endef
 define Package/xtables-mod-redirect
 $(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables)
   TITLE:=REDIRECT xtables extension
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mod-redirect/description
@@ -636,9 +618,8 @@ define Package/xtables-mod-redirect/description
 endef
 
 define Package/xtables-mods-default
-$(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables +xtables-mod-standard +xtables-mod-tcp +xtables-mod-udp +xtables-mod-comment +xtables-mod-set +xtables-mod-limit +xtables-mod-mac +xtables-mod-multiport +xtables-mod-tcpmss +xtables-mod-time +xtables-mod-mark +xtables-mod-conntrack +xtables-mod-masquerade +xtables-mod-redirect +iptables-mod-nflog)
+$(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables +xtables-mod-standard +xtables-mod-tcp +xtables-mod-udp +xtables-mod-comment +xtables-mod-set +xtables-mod-limit +xtables-mod-mac +xtables-mod-multiport +xtables-mod-tcpmss +xtables-mod-time +xtables-mod-mark +xtables-mod-conntrack +xtables-mod-masquerade +xtables-mod-redirect +iptables-mod-nflog )
   TITLE:=Default xtables modules
-  VARIANT:=nftables
 endef
 
 define Package/xtables-mods-default/description
@@ -678,7 +659,6 @@ $(call Package/iptables/Default)
     200:/usr/sbin/ip6tables:/usr/sbin/xtables-legacy-multi \
     200:/usr/sbin/ip6tables-restore:/usr/sbin/xtables-legacy-multi \
     200:/usr/sbin/ip6tables-save:/usr/sbin/xtables-legacy-multi
-  PROVIDES:=ip6tables
 endef
 
 define Package/ip6tables-nft
@@ -689,8 +669,6 @@ $(call Package/iptables/Default)
     300:/usr/sbin/ip6tables:/usr/sbin/xtables-nft-multi \
     300:/usr/sbin/ip6tables-restore:/usr/sbin/xtables-nft-multi \
     300:/usr/sbin/ip6tables-save:/usr/sbin/xtables-nft-multi
-  VARIANT:=nftables
-  PROVIDES:=ip6tables
 endef
 
 define Package/ip6tables-nft/description
@@ -758,7 +736,6 @@ define Package/libxtables-nft
  TITLE:=IPv4/IPv6 firewall - shared xtables nft library
  ABI_VERSION:=12
  DEPENDS:=+libxtables
- VARIANT:=nftables
 endef
 
 TARGET_CPPFLAGS := \
@@ -783,6 +760,7 @@ CONFIGURE_ARGS += \
 	--with-xtlibdir=/usr/lib/iptables \
 	--with-xt-lock-name=/var/run/xtables.lock \
 	$(if $(CONFIG_IPTABLES_CONNLABEL),,--disable-connlabel) \
+	$(if $(CONFIG_IPTABLES_NFTABLES),,--disable-nftables) \
 	$(if $(CONFIG_IPV6),,--disable-ipv6)
 
 MAKE_FLAGS := \
@@ -791,12 +769,14 @@ MAKE_FLAGS := \
 	KERNEL_DIR="$(LINUX_DIR)/user_headers/" PREFIX=/usr \
 	KBUILD_OUTPUT="$(LINUX_DIR)"
 
-ifeq ($(BUILD_VARIANT),nftables)
-  MAKE_FLAGS += BUILTIN_MODULES="DNAT LOG MASQUERADE REDIRECT REJECT SNAT"
-else
-  CONFIGURE_ARGS += --disable-nftables
-  MAKE_FLAGS += BUILTIN_MODULES="$(patsubst ip6t_%,%,$(patsubst ipt_%,%,$(patsubst xt_%,%,$(IPT_BUILTIN) $(IPT_CONNTRACK-m) $(IPT_NAT-m))))"
-endif
+#ifeq ($(BUILD_VARIANT),nftables)
+#  MAKE_FLAGS += BUILTIN_MODULES=
+NFT_MODS := "DNAT LOG MASQUERADE REDIRECT REJECT SNAT"
+#else
+#  CONFIGURE_ARGS += --disable-nftables
+#  MAKE_FLAGS += BUILTIN_MODULES=
+LEGACY_MODS := "$(patsubst ip6t_%,%,$(patsubst ipt_%,%,$(patsubst xt_%,%,$(IPT_BUILTIN) $(IPT_CONNTRACK-m) $(IPT_NAT-m))))"
+#endif
 
 ifneq ($(wildcard $(PKG_BUILD_DIR)/.config_*),$(subst .configured_,.config_,$(STAMP_CONFIGURED)))
   define Build/Configure/rebuild
@@ -819,6 +799,17 @@ define Build/Configure
 	echo "IPT_NAT-m = $(IPT_NAT-m)"
 $(Build/Configure/rebuild)
 $(Build/Configure/Default)
+endef
+
+define Build/Compile
+	$(MAKE_VARS) \
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) \
+	$(MAKE_FLAGS) \
+	BUILTIN_MODULES=$(NFT_MODS)
+	$(MAKE_VARS) \
+	$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) \
+	$(MAKE_FLAGS) \
+	BUILTIN_MODULES=$(LEGACY_MODS)
 endef
 
 define Build/InstallDev
