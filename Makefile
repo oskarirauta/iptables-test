@@ -112,7 +112,7 @@ endef
 define Package/iptables-nft
 $(call Package/iptables/Default)
   TITLE:=IP firewall administration tool nft
-  DEPENDS:=@IPTABLES_NFTABLES +libxtables-nft +libip4tc +IPV6:libip6tc +kmod-ipt-core +kmod-nft-compat +xtables-mods-default
+  DEPENDS:=@IPTABLES_NFTABLES +libxtables-nft +libip4tc +IPV6:libip6tc +kmod-ipt-core +kmod-nft-compat +libxtables +xtables-mod-standard +xtables-mod-tcp +xtables-mod-udp +xtables-mod-comment +xtables-mod-set +xtables-mod-limit +xtables-mod-mac +xtables-mod-multiport +xtables-mod-tcpmss +xtables-mod-time +xtables-mod-mark +xtables-mod-conntrack +xtables-mod-masquerade +xtables-mod-redirect +iptables-mod-nflog
   ALTERNATIVES:=\
     300:/usr/sbin/iptables:/usr/sbin/xtables-nft-multi \
     300:/usr/sbin/iptables-restore:/usr/sbin/xtables-nft-multi \
@@ -617,11 +617,6 @@ define Package/xtables-mod-redirect/description
 
 endef
 
-define Package/xtables-mods-default
-$(call Package/iptables/Module, @IPTABLES_NFTABLES +libxtables +xtables-mod-standard +xtables-mod-tcp +xtables-mod-udp +xtables-mod-comment +xtables-mod-set +xtables-mod-limit +xtables-mod-mac +xtables-mod-multiport +xtables-mod-tcpmss +xtables-mod-time +xtables-mod-mark +xtables-mod-conntrack +xtables-mod-masquerade +xtables-mod-redirect +iptables-mod-nflog )
-  TITLE:=Default xtables modules
-endef
-
 define Package/xtables-mods-default/description
  Meta package for default xtables modules.
 
@@ -945,5 +940,3 @@ $(eval $(call BuildPlugin,xtables-mod-mark,xt_mark xt_MARK))
 $(eval $(call BuildPlugin,xtables-mod-conntrack,xt_state xt_CT xt_conntrack))
 $(eval $(call BuildPlugin,xtables-mod-masquerade,xt_MASQUERADE))
 $(eval $(call BuildPlugin,xtables-mod-redirect,xt_REDIRECT))
-
-$(eval $(call BuildPackage,xtables-mods-default))
